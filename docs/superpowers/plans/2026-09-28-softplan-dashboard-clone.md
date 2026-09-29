@@ -202,19 +202,19 @@ git commit -m "feat(dashboard): port typed purchasing calculations"
 - `DataTable<T>({ columns, rows, sort, onSort, emptyMessage })` renders semantic table and sortable headers.
 - `downloadCsv(filename, headers, rows)` emits UTF-8 BOM, semicolon separators and quoted values.
 
-- [ ] **Step 1: Implement lifecycle-safe chart wrapper**
+- [x] **Step 1: Implement lifecycle-safe chart wrapper**
 
 Register Chart.js controllers/elements/plugins once. Apply source defaults and `totalPilha` plugin. Keep canvas inside `.chart`; cleanup calls `destroy()`.
 
-- [ ] **Step 2: Implement presentation primitives**
+- [x] **Step 2: Implement presentation primitives**
 
 Match source DOM hierarchy and class names. Keep components stateless except chart instance lifecycle.
 
-- [ ] **Step 3: Implement CSV serializer**
+- [x] **Step 3: Implement CSV serializer**
 
 Escape embedded quotes by doubling; quote every field; use CRLF; create Blob URL; click temporary anchor; revoke URL.
 
-- [ ] **Step 4: Test CSV and typecheck**
+- [x] **Step 4: Test CSV and typecheck**
 
 Extend the `test` script to run both `src/lib/dashboard-calculations.test.ts` and `src/lib/csv.test.ts`.
 
@@ -222,7 +222,7 @@ Run: `npm run test && npm run typecheck`
 
 Expected: both exit 0; CSV test covers semicolons, quotes, CRLF and UTF-8 BOM; no `any`, `@ts-ignore` or disabled lint rules.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add package.json src/components/dashboard src/lib/csv.ts src/lib/csv.test.ts docs/research/components/dashboard-primitives.spec.md
