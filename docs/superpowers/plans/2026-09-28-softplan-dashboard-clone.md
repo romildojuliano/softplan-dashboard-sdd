@@ -40,11 +40,11 @@
 
 - [ ] **Step 1: Write extraction script**
 
-Read source text, match `const DATA = (\{.*\});` between first data `<script>` tags, parse JSON, and write pretty JSON to `src/data/dashboard-data.json`. Fail when source, assignment or JSON is invalid.
+Read source path from the first CLI argument (default to `../dashboard_compras_softplan_jan_jul_2026.html`), match `const DATA = (\{.*\});` between first data `<script>` tags, parse JSON, and write pretty JSON to `src/data/dashboard-data.json`. Fail when source, assignment or JSON is invalid.
 
 - [ ] **Step 2: Run extraction**
 
-Run: `node scripts/extract-dashboard-source.mjs`
+Run: `node scripts/extract-dashboard-source.mjs "<source-html-path>"`
 
 Expected: dataset file parses and contains `meta`, `rows`, `requisicoes` and `protocolos`.
 
@@ -118,12 +118,13 @@ git commit -m "feat(dashboard): establish Softplan visual foundation"
 
 - Create: `src/types/dashboard.ts`
 - Create: `src/lib/dashboard-calculations.ts`
+- Create: `src/data/dashboard-data.ts`
 - Create: `src/lib/dashboard-calculations.test.ts`
 - Modify: `package.json`
 
 **Interfaces:**
 
-- Produces: `DashboardData`, `DashboardFilters`, `PurchaseRow`, `RequestRow`, `ProtocolRow`, `Totals`; `DEFAULT_FILTERS`; `filterDashboardData(data, filters)`; `calculateTotals(rows)`; `groupByMonth(rows)`; `calculateSupplierAbc(rows)`; formatters `brl`, `brlCompact`, `percent`, `hours`.
+- Produces: typed `DASHBOARD_DATA`, `DashboardData`, `DashboardFilters`, `PurchaseRow`, `RequestRow`, `ProtocolRow`, `Totals`; `DEFAULT_FILTERS`; `filterDashboardData(data, filters)`; `calculateTotals(rows)`; `groupByMonth(rows)`; `calculateSupplierAbc(rows)`; formatters `brl`, `brlCompact`, `percent`, `hours`.
 
 - [ ] **Step 1: Define tuple and state types**
 
@@ -131,7 +132,7 @@ Represent source tuple indices with named constants and readonly tuple types. `D
 
 - [ ] **Step 2: Write failing default-total test**
 
-Using imported JSON and default filters, assert:
+Using typed `DASHBOARD_DATA` (from the extracted JSON) and default filters, assert:
 
 ```ts
 assert.equal(totals.orders, 2267);
@@ -164,7 +165,7 @@ Expected: both exit 0.
 Set `"test": "node --test src/lib/dashboard-calculations.test.ts"`.
 
 ```bash
-git add package.json src/types/dashboard.ts src/lib/dashboard-calculations.ts src/lib/dashboard-calculations.test.ts
+git add package.json src/data/dashboard-data.ts src/types/dashboard.ts src/lib/dashboard-calculations.ts src/lib/dashboard-calculations.test.ts
 git commit -m "feat(dashboard): port typed purchasing calculations"
 ```
 
@@ -183,6 +184,8 @@ git commit -m "feat(dashboard): port typed purchasing calculations"
 - Create: `src/components/dashboard/CsvButton.tsx`
 - Create: `src/lib/csv.ts`
 - Create: `docs/research/components/dashboard-primitives.spec.md`
+- Modify: `package.json`
+- Create: `src/lib/csv.test.ts`
 
 **Interfaces:**
 
@@ -202,16 +205,18 @@ Match source DOM hierarchy and class names. Keep components stateless except cha
 
 Escape embedded quotes by doubling; quote every field; use CRLF; create Blob URL; click temporary anchor; revoke URL.
 
-- [ ] **Step 4: Typecheck**
+- [ ] **Step 4: Test CSV and typecheck**
 
-Run: `npm run typecheck`
+Extend the `test` script to run both `src/lib/dashboard-calculations.test.ts` and `src/lib/csv.test.ts`.
 
-Expected: exit 0; no `any`, `@ts-ignore` or disabled lint rules.
+Run: `npm run test && npm run typecheck`
+
+Expected: both exit 0; CSV test covers semicolons, quotes, CRLF and UTF-8 BOM; no `any`, `@ts-ignore` or disabled lint rules.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add src/components/dashboard src/lib/csv.ts docs/research/components/dashboard-primitives.spec.md
+git add package.json src/components/dashboard src/lib/csv.ts src/lib/csv.test.ts docs/research/components/dashboard-primitives.spec.md
 git commit -m "feat(dashboard): add shared charts tables and controls"
 ```
 
@@ -498,11 +503,11 @@ Start `npm start` from successful build, run `node scripts/smoke-dashboard.mjs`,
 
 - [ ] **Step 5: Capture and compare first QA round**
 
-Capture source and clone at 1440×900 and 390×900 from document top after charts settle. Compare section-by-section, update specs if extraction was wrong, then batch-fix layout/content/state drift.
+Capture source and clone at 1440×900, 768×900 and 390×900 from document top after charts settle. Compare section-by-section, update specs if extraction was wrong, then batch-fix layout/content/state drift.
 
 - [ ] **Step 6: Confirm second QA round**
 
-Recapture desktop/mobile once. Confirm no page-level horizontal overflow, all 11 tabs and key interactions work.
+Recapture all three viewport sizes once. Confirm no page-level horizontal overflow, all 11 tabs and key interactions work.
 
 - [ ] **Step 7: Run mechanical detector once**
 
