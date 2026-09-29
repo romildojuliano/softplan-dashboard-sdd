@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Sora } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  title: "Dashboard de Compras · Softplan · Jan–Jul 2026",
+  description: "Dashboard de Compras · Softplan · Jan–Jul 2026",
 };
 
 export default function RootLayout({
@@ -23,11 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="pt-BR" className={sora.variable}>
+      <body>{children}</body>
     </html>
   );
 }

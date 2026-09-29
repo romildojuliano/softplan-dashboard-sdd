@@ -38,27 +38,27 @@
 - Consumes: standalone source file.
 - Produces: exact parsed `DATA` JSON and auditable topology/behavior records used by every later task.
 
-- [ ] **Step 1: Write extraction script**
+- [x] **Step 1: Write extraction script**
 
 Read source path from the first CLI argument (default to `../dashboard_compras_softplan_jan_jul_2026.html`), match `const DATA = (\{.*\});` between first data `<script>` tags, parse JSON, and write pretty JSON to `src/data/dashboard-data.json`. Fail when source, assignment or JSON is invalid.
 
-- [ ] **Step 2: Run extraction**
+- [x] **Step 2: Run extraction**
 
 Run: `node scripts/extract-dashboard-source.mjs "<source-html-path>"`
 
 Expected: dataset file parses and contains `meta`, `rows`, `requisicoes` and `protocolos`.
 
-- [ ] **Step 3: Capture source evidence**
+- [x] **Step 3: Capture source evidence**
 
 At 1440×900 and 390×900, save full-page screenshots. Record all 11 tab IDs, card/chart/table counts, sticky header, filter behavior, sorting, pagination and CSV actions in topology/behavior docs.
 
-- [ ] **Step 4: Verify extraction determinism**
+- [x] **Step 4: Verify extraction determinism**
 
 Run script twice and compare checksum before/after.
 
 Expected: identical SHA-256.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scripts/extract-dashboard-source.mjs src/data/dashboard-data.json docs/research docs/design-references
@@ -76,39 +76,46 @@ git commit -m "chore(clone): extract dashboard source artifacts"
 - Create: `src/components/dashboard/Mosaic.tsx`
 - Create: `docs/research/components/dashboard-shell.spec.md`
 
+- Modify: `.superpowers/sdd/2026-09-28-softplan-dashboard-clone/task-1-report.md`
+- Modify: `docs/research/BEHAVIORS.md`
+- Modify: `docs/research/components/dashboard-foundation.spec.md`
+- Modify: `docs/superpowers/specs/2026-09-28-softplan-dashboard-clone-design.md`
+
 **Interfaces:**
 
 - Consumes: source CSS tokens and global computed styles.
 - Produces: Sora font variable, global dashboard token classes, local `chart.js` dependency and decorative `Mosaic`.
 
-- [ ] **Step 1: Install exact chart dependency**
+- [x] **Step 1: Install exact chart dependency**
 
 Run: `npm install chart.js@4.4.1`
 
 Expected: dependency appears under `dependencies`; no CDN remains necessary.
 
-- [ ] **Step 2: Replace layout metadata and font**
+- [x] **Step 2: Replace layout metadata and font**
 
 Use `Sora` from `next/font/google` with weights `200`, `300`, `400`, `500`, `600`, `700`, `latin` subset and `--font-sora`. Set `lang="pt-BR"`, title `Dashboard de Compras · Softplan · Jan–Jul 2026`, and matching description.
 
-- [ ] **Step 3: Port visual tokens and global element rules**
+- [x] **Step 3: Port visual tokens and global element rules**
 
-Copy exact source tokens, base body rules, buttons, tabs, filters, cards, tables, charts, notes, footer, reduced-motion and breakpoints. Keep selectors scoped under `.dashboard` except `html`, `body`, selection and reset rules.
+Copy exact source tokens, base body rules, buttons, tabs, filters, cards, tables, charts, notes, footer, reduced-motion and breakpoints. Scope selectors under `.dashboard` except `html`, `body`, selection and reset rules.
 
-- [ ] **Step 4: Implement mosaic SVG**
+Mobile correction: `.cards-2` must not keep source `minmax(420px, 1fr)` at 390px; constrain the track to the viewport to prevent page-level overflow.
+
+- [x] **Step 4: Implement mosaic SVG**
 
 Render the ten source paths with identical viewBox, stroke colors, dimensions and `preserveAspectRatio="none"`.
 
-- [ ] **Step 5: Typecheck**
+- [x] **Step 5: Typecheck**
 
 Run: `npm run typecheck`
 
 Expected: exit 0.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
-git add package.json package-lock.json src/app/layout.tsx src/app/globals.css src/components/dashboard/Mosaic.tsx docs/research/components/dashboard-shell.spec.md
+git add package.json package-lock.json src/app/layout.tsx src/app/globals.css src/components/dashboard/Mosaic.tsx docs/research/components/dashboard-shell.spec.md docs/research/BEHAVIORS.md docs/research/components/dashboard-foundation.spec.md docs/superpowers/specs/2026-09-28-softplan-dashboard-clone-design.md docs/superpowers/plans/2026-09-28-softplan-dashboard-clone.md .superpowers/sdd/2026-09-28-softplan-dashboard-clone/task-1-report.md
 git commit -m "feat(dashboard): establish Softplan visual foundation"
 ```
 

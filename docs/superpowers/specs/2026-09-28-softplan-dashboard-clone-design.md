@@ -107,8 +107,9 @@ Sem nova direção visual. Fonte existente é autoridade.
 
 - 1440 px: cards em duas colunas quando aplicável; KPIs auto-fit.
 - 768 px: spans duplos colapsam; filtros quebram em múltiplas linhas.
-- 390 px: padding reduzido, cards empilhados, tabs roláveis, tabelas com overflow horizontal.
-- Qualquer overflow horizontal deve estar restrito a tabs/tabelas; página não pode exceder viewport.
+- 390 px: padding reduzido, cards empilhados, tabs roláveis; tabelas usam overflow horizontal local.
+- Defeito da fonte: `.cards-2` mantém `minmax(420px, 1fr)`, levando o documento a 435 px num viewport de 390 px.
+- Contrato do clone: limitar esse track ao viewport; overflow horizontal da página é proibido.
 
 ## Extração e rastreabilidade
 

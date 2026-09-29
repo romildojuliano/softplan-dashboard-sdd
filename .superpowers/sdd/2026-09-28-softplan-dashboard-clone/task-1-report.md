@@ -12,6 +12,7 @@
 ## Evidence
 
 Rendered source URL: `http://127.0.0.1:4173/dashboard_compras_softplan_jan_jul_2026.html`. Selector counts: 11 tabs, 63 `.card` elements, 5 separate `.kpi` blocks, 52 `canvas` elements; no browser errors. Source CSS breakpoints: 980px (`.span-2`), 820px (`.subgrid`), 640px (mobile sizing/padding). Screenshots are device-scale PNGs: desktop 1800×2079, mobile 544×4919. Charts loaded from jsDelivr; Google Fonts load was not independently verified.
+- Mobile audit: document scroll width is 435px at a 390px viewport. `.cards-2` keeps `minmax(420px, 1fr)`, causing 45px page overflow; clone acceptance forbids it.
 
 Extraction ran twice with the explicit HTML source path; SHA-256 remained `8ea06b902ddf8ebe44c8052cc43a5f7d3bb285c3330490c841593a782b3714cc`. Dataset key/count check passed. Missing-source input failed nonzero and left dataset checksum unchanged. Node version used: `v24.21.0`.
 

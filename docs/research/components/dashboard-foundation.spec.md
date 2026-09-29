@@ -13,6 +13,7 @@ Root object retains source keys and values: `meta`, `rows`, `requisicoes`, `prot
 ## UI surface contract
 
 Native React implementation must reproduce all 11 source views (`geral`, `reg`, `saving`, `roi`, `req`, `comp`, `prot`, `cat`, `forn`, `rac`, `base`), Portuguese copy, card/chart/table topology, global/local filters, sort semantics, pagination, and all CSV exports. No iframe or backend; all source data/calculation behavior remains client-side. Preserve source conversion and display assumptions, including USD conversion at R$5,20 and source caveats. Responsive targets are 1440×900 and 390×900; top bar is sticky; chart and table content stays reachable on mobile.
+- At 390px, source `.cards-2` minimum track makes document width 435px; clone must constrain that track to the viewport and retain scrolling only within tabs/tables.
 
 ## Evidence
 

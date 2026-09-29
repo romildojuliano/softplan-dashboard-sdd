@@ -27,4 +27,6 @@ Authority: standalone source HTML listed in `PAGE_TOPOLOGY.md`. All behavior bel
 
 - Chart.js 4.4.1 loads from jsDelivr CDN. Captures were made with network access and all 52 canvas elements rendered; no browser errors observed. Font Sora is requested from Google Fonts; the capture environment's font/network success was not independently verified.
 - Charts rerender from filtered data on navigation/filter changes; source documents visual metadata, explanatory notes, labels, currency conversion (`US$1 = R$5,20`) and caveats.
-- Header remains sticky at the viewport top. Table headers also stick while their table scrolls. On narrow screens, charts/cards stack and tab/filter controls may horizontally overflow by design.
+- Header remains sticky at the viewport top; table headers also stick while their table scrolls. Tabs and tables use local horizontal scrolling on narrow screens.
+- Source mobile defect: `.cards-2` keeps `minmax(420px, 1fr)`, expanding document scroll width to 435px at a 390px viewport (45px overflow).
+- Clone contract rejects page-level overflow; constrain card-grid track to viewport. Keep horizontal scrolling inside tabs/tables.
