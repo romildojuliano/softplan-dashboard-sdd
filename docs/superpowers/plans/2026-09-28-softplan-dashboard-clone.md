@@ -124,20 +124,22 @@ git commit -m "feat(dashboard): establish Softplan visual foundation"
 **Files:**
 
 - Create: `src/types/dashboard.ts`
+- Create: `src/types/dashboard-data-json.d.ts`
 - Create: `src/lib/dashboard-calculations.ts`
 - Create: `src/data/dashboard-data.ts`
 - Create: `src/lib/dashboard-calculations.test.ts`
-- Modify: `package.json`
+- Modify: `package.json` for the data import and test script
+- Modify: `tsconfig.json` for native TypeScript test imports
 
 **Interfaces:**
 
-- Produces: typed `DASHBOARD_DATA`, `DashboardData`, `DashboardFilters`, `PurchaseRow`, `RequestRow`, `ProtocolRow`, `Totals`; `DEFAULT_FILTERS`; `filterDashboardData(data, filters)`; `calculateTotals(rows)`; `groupByMonth(rows)`; `calculateSupplierAbc(rows)`; formatters `brl`, `brlCompact`, `percent`, `hours`.
+- Produces: typed `DASHBOARD_DATA`, dashboard row/filter/result types, `DEFAULT_FILTERS`, filtering, totals, month grouping, median, supplier ABC/profile/action calculations, and `brl`, `brlCompact`, `percent`, `hours` formatters.
 
-- [ ] **Step 1: Define tuple and state types**
+- [x] **Step 1: Define tuple and state types**
 
 Represent source tuple indices with named constants and readonly tuple types. `DashboardFilters` contains `months`, `companies`, `nature`, `buyer`, `category`, `query`, `origin`, `urgency`, `system`, and three page indexes.
 
-- [ ] **Step 2: Write failing default-total test**
+- [x] **Step 2: Write failing default-total test**
 
 Using typed `DASHBOARD_DATA` (from the extracted JSON) and default filters, assert:
 
@@ -151,28 +153,28 @@ assert.equal(totals.negotiatedOrders, 474);
 
 Also assert month/company/nature/query filtering excludes nonmatching OC, request and protocol rows.
 
-- [ ] **Step 3: Run test and observe failure**
+- [x] **Step 3: Run test and observe failure**
 
 Run: `node --test src/lib/dashboard-calculations.test.ts`
 
 Expected: failure because calculation module is absent.
 
-- [ ] **Step 4: Port pure source calculations**
+- [x] **Step 4: Port pure source calculations**
 
 Move filtering, totals, grouping, median, ABC, supplier profile and bucket assignment into pure functions. No DOM or Chart.js imports.
 
-- [ ] **Step 5: Run focused checks**
+- [x] **Step 5: Run focused checks**
 
-Run: `node --test src/lib/dashboard-calculations.test.ts && npm run typecheck`
+Run: `npm test && npm run typecheck`
 
 Expected: both exit 0.
 
-- [ ] **Step 6: Add test script and commit**
+- [x] **Step 6: Add test script and commit**
 
 Set `"test": "node --test src/lib/dashboard-calculations.test.ts"`.
 
 ```bash
-git add package.json src/data/dashboard-data.ts src/types/dashboard.ts src/lib/dashboard-calculations.ts src/lib/dashboard-calculations.test.ts
+git add package.json tsconfig.json src/data/dashboard-data.ts src/types/dashboard.ts src/types/dashboard-data-json.d.ts src/lib/dashboard-calculations.ts src/lib/dashboard-calculations.test.ts
 git commit -m "feat(dashboard): port typed purchasing calculations"
 ```
 
