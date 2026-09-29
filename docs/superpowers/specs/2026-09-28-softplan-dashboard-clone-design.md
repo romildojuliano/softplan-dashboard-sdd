@@ -8,7 +8,7 @@ Portar `../dashboard_compras_softplan_jan_jul_2026.html` para o scaffold Next.js
 
 - Todas as 11 abas.
 - Dataset completo da fonte.
-- Todos os 52 gráficos e 56 cards observados.
+- Todos os 52 gráficos, 63 cards e 5 blocos KPI observados no DOM da fonte (contagens por `canvas`, `.card` e `.kpi`, respectivamente).
 - Filtros globais e locais.
 - Tabelas, ordenação, paginação e exportações CSV.
 - Estados hover, focus, disabled, active e sticky.

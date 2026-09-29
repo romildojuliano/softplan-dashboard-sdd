@@ -7,7 +7,7 @@ Authoritative source: `/home/prof/dev/softplan-clone/dashboard_compras_softplan_
 - Sticky top bar with title/period and USD conversion pill (`R$ 5,20`), current-selection CSV export, horizontally scrollable tab strip.
 - Global filters: creation month chips; company chips; nature chips (all, negotiable, records, saving); buyer select; category select; free-text search; clear filters action.
 - Main panel shows exactly one selected view; KPI strip/note followed by cards with charts and/or tables; footer explains period, row scope, and field dates.
-- Source CSS breakpoint at 700px changes cards to one column, narrows horizontal padding and chart heights; tab and chip strips can overflow horizontally.
+- Source CSS breakpoints: 980px collapses `.span-2`; 820px stacks `.subgrid`; 640px applies mobile sizing/padding. `.card` selector count is 63; separate `.kpi` selector count is 5; `canvas` selector count is 52. Counts are DOM selector counts, so KPI blocks are not included in card count; charts count canvas elements.
 - Header is `position: sticky; top: 0; z-index: 40`; table headings independently sticky within tables.
 
 ## Tabs and content inventory
