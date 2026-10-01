@@ -3,6 +3,7 @@ import {
   PURCHASE_INDEX,
   REQUEST_INDEX,
   type DashboardData,
+  type BaseTableSort,
   type DashboardFilters,
   type FilteredDashboardData,
   type Totals,
@@ -417,4 +418,38 @@ export function hours(value: number | null | undefined): string {
   if (value < 1) return `${number0.format(value * 60)} min`;
   if (value < 48) return `${number1.format(value)} h`;
   return `${number1.format(value / 24)} d`;
+}
+
+const purchaseSortValues: Record<
+  string,
+  (row: DashboardData['rows'][number], meta: DashboardData['meta']) => number | string
+> = {
+  po: (row) => row[PURCHASE_INDEX.order],
+  mes: (row) => row[PURCHASE_INDEX.month],
+  emp: (row, meta) => meta.empresas[row[PURCHASE_INDEX.company]],
+  forn: (row, meta) => meta.fornecedores[row[PURCHASE_INDEX.supplier]],
+  cat: (row, meta) => meta.categorias[row[PURCHASE_INDEX.category]],
+  comp: (row, meta) => meta.compradores[row[PURCHASE_INDEX.buyer]],
+  nat: (row) => row[PURCHASE_INDEX.nature] >= 0 ? 1 : 0,
+  mo: (row, meta) => meta.moedas[row[PURCHASE_INDEX.currency]],
+  v: (row) => row[PURCHASE_INDEX.spend],
+  sv: (row) => row[PURCHASE_INDEX.saving],
+  pc: (row) => row[PURCHASE_INDEX.saving] > 0
+    ? row[PURCHASE_INDEX.saving] / (row[PURCHASE_INDEX.saving] + row[PURCHASE_INDEX.spend])
+    : -1,
+};
+
+export function sortPurchaseRows(
+  data: DashboardData,
+  rows: readonly DashboardData['rows'][number][],
+  sort: BaseTableSort,
+) {
+  const value = purchaseSortValues[sort.key];
+  return [...rows].sort((left, right) => {
+    const a = value(left, data.meta);
+    const b = value(right, data.meta);
+    return (typeof a === 'string' && typeof b === 'string'
+      ? a.localeCompare(b)
+      : Number(a) - Number(b)) * (sort.direction === 'asc' ? 1 : -1);
+  });
 }

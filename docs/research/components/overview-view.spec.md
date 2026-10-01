@@ -1,0 +1,5 @@
+# Visão geral
+
+Source: `dashboard_compras_softplan_jan_jul_2026.html` lines 327–357, 1093–1139. All metrics use globally filtered purchase rows. Five KPIs: total spend with distinct OCs and line count; negotiable spend with share and records; captured saving with rates against negotiable and total spend; spend per distinct OC with active supplier count; number of positive-saving lines with average discount over positive-saving lines' original value. Methodology note explains June item-level rows and OC distinction.
+
+Five cards in two columns, monthly card spanning both: monthly stacked negotiable/records bars plus saving-rate line and total labels; company doughnut with spend shares; monthly distinct OC bars; top ten category horizontal bars; contracted currency spend bars. Tooltips show exact currency, percent, and line counts. Months retain full seven-month axis under filters; category/company/currency charts drop absent groups. Responsive source CSS collapses card grid and KPI grid on narrow screens; charts remain within chart wrappers.

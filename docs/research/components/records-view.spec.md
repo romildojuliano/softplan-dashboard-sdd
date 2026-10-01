@@ -1,0 +1,5 @@
+# Registros
+
+Source: `dashboard_compras_softplan_jan_jul_2026.html` lines 359–378, 2298–2336. All computations use globally filtered purchase rows; records have nature index ≥ 0. Four KPIs show record spend/share/lines, negotiable spend, largest record reason by spend, and saving-rate uplift in percentage points when denominator changes from total spend to negotiable spend. Methodology note explains non-negotiable formalization.
+
+Two cards show horizontal record reason spend with amount, line count and share tooltips; seven-month stacked negotiable/record spend with monthly record share tooltip. Full-width third card shows top 25 record suppliers by spend, with supplier name truncated to 40, ordered distinct reasons truncated to 34, line count, proportional spend bar with BRL amount, and share of total record spend. Empty table displays standard filtered-empty message. Card grid and KPI grid collapse under source responsive CSS. No local filters or pagination; global filters determine all rows.

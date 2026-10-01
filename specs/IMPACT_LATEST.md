@@ -1,25 +1,38 @@
 ## Target
 
-Substituição do placeholder em `src/app/page.tsx` pelo clone completo; atualização de `src/app/layout.tsx` e `src/app/globals.css`; novos módulos de dashboard.
+Complete Tasks 5–13 of `docs/superpowers/plans/2026-09-28-softplan-dashboard-clone.md`, preserving existing dashboard implementation.
 
-## Dependents (1)
+## Dependents
 
-- `src/app/layout.tsx`: carrega `globals.css` e envolve a única rota atual.
+- `src/components/dashboard/Dashboard.tsx`: owns view registry, filters and purchase CSV ordering.
+- `src/types/dashboard.ts`: `DashboardViewProps` is consumed by Dashboard and all 11 views.
+- Buyers, Categories, Requests and Invoices currently own sort state locally; unmounting an active view loses its sort selection.
+- Database already receives persistent sorting from Dashboard; keep its table and both purchase CSV exports aligned.
+- Other seven views ignore sorting props and need no behavior change.
 
 ## Affected Stories
 
-- Nenhum plano de release ou story existente encontrado.
+No release-plan stories exist. Approved implementation tasks 5, 8, 9, 10, 11, 12 and 13 cover state, views and browser acceptance.
 
 ## Test Coverage
 
-- Nenhum teste permanente existente cobre a rota `/`.
-- Verificação atual: `npm run check` e smoke browser das 11 abas em 1440 px, 768 px e 390 px.
-- Gap: sem regressão visual automatizada; comparação manual por screenshots será usada nesta entrega.
+- `npm test`: calculation/filter boundaries and CSV serialization.
+- `scripts/smoke-dashboard.mjs`: all 11 tabs at 1440/768/390, filters, search, sorting, pagination and downloads.
+- Added regression: sort each of four affected tables, switch tabs, return, and compare direction and displayed rows; clearing filters must retain direction.
+- Before fix, production smoke fails with `comp preserves sort across tabs`: actual `descending`, expected `ascending`.
+- Source browser preserves protocol ascending sort after tab round trip; clone resets it to descending.
+- Default source/clone browser comparison matches all KPI values, card titles, displayed table rows and 52 chart datasets.
 
-## Risk: Medium
+## Risk: High
 
-Rota única e scaffold mínimo reduzem fan-in, mas volume funcional é alto: 11 abas, 52 gráficos, filtros compartilhados, tabelas, paginação e CSV.
+Shared view contract affects 11 components. Sorting moves to existing Dashboard state; only sortable views consume changed props. LSP reference lookup unavailable (`No language server found for this action`); explicit imports/usages enumerated with grep.
 
 ## Recommended action
 
-Proceder com port incremental: fundação e dados primeiro, componentes compartilhados depois, visões por aba e montagem final; build e smoke após integração.
+Keep one active view mounted. Hoist sorting into Dashboard rather than mounting hidden views, adding persistence storage or introducing a new state library. Rebuild and rerun production smoke after changes.
+
+## Filtered ROI opportunity
+
+Source `viewRoi` keeps period costs and return totals fixed but derives avoidable orders from filtered purchase and invoice rows through `perfilFornecedores`. `RoiView` incorrectly used full-period supplier profiles for both calculations.
+
+Scope: `RoiView` supplier-profile inputs only; shared calculations and period ROI remain unchanged. Production regression fails for Fev / Poligraph / Só registros: 785 avoidable orders instead of 5. Retain regression in `scripts/smoke-dashboard.mjs`.

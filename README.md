@@ -26,6 +26,14 @@ Give your AI coding agent a URL and watch it recreate the website as a clean Nex
 
 > Click the image above to watch the full demo on YouTube.
 
+## This project: Softplan purchasing dashboard
+
+Run `npm run dev` and open `http://localhost:3000`. Run `npm test` for calculation and CSV tests; `npm run check` runs ESLint, TypeScript, and the production build.
+
+This clone ports all 11 views, charts, filters, sorting, pagination, and CSV exports. Its checked-in data comes from `../softplan-clone/dashboard_compras_softplan_jan_jul_2026.html` and lives in `src/data/dashboard-data.json`; the app has no runtime source-file, API, or database dependency.
+
+For production browser checks, run `npm run check`, start the app with `npm start`, then run `node scripts/smoke-dashboard.mjs` in another terminal. Set `DASHBOARD_URL` when using a port other than 3000. The smoke covers all 11 tabs, three viewport sizes, filtering, sorting persistence, pagination and CSV downloads.
+
 ## Quick Start
 
 ### 1. Set up your project

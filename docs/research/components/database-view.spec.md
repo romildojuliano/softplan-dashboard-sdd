@@ -1,0 +1,7 @@
+# Database view
+
+Authority: source HTML lines 775–793 and `baseSorted`/`viewBase`/`exportCsv` lines 2339–2403. Component: `src/components/dashboard/views/DatabaseView.tsx`.
+
+- Four filtered KPIs: purchase lines/distinct OCs, spend/negotiable/records, saving/rate on negotiable, suppliers/mean ticket. Full-width table card has original title/hint and CSV action. Twelve columns preserve display labels and formatting; 11 headers are sortable (description is not), initial sort is value descending, repeated key reverses direction, newly selected key defaults descending, and sorting resets page to first.
+- Sorting operates on the complete filtered set before slicing into 50-row pages and before CSV export. Source keys compare OC number, month number for displayed date, names/labels for string fields, nature as record/negotiable, and saving rate as −1 when no saving. Pagination uses zero-based shared `filters.page` and one-based `<Pagination>`; limits clamp when filters reduce rows. Empty result reports no matching orders, `Nenhuma linha na seleção`, and page `1 / 1` with disabled controls.
+- CSV uses shared `purchaseCsvRows`/`PURCHASE_CSV_HEADERS` and `CsvButton`, filename `ocs_softplan_selecao.csv`, sorted entire filtered selection (not current page), UTF-8 BOM, semicolon delimiter, quoted fields. `.tblwrap` scrolls and `.tfoot` groups status with pager across responsive breakpoints.

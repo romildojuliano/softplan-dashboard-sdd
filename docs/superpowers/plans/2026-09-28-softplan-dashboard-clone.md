@@ -244,25 +244,25 @@ git commit -m "feat(dashboard): add shared charts tables and controls"
 - `Dashboard` passes filtered purchase/request/protocol arrays, full data, filters and local setters to active view.
 - View contract: `{ data, filtered, filters, setFilters }` with typed subsets.
 
-- [ ] **Step 1: Implement reducer/state transitions**
+- [x] **Step 1: Implement reducer/state transitions**
 
 Port tab change, month/company toggles, nature selection, buyer/category selects, 220 ms search debounce, reset and scope-label rules. Reset relevant page indexes when filters change.
 
-- [ ] **Step 2: Implement header/tabs/filters/footer**
+- [x] **Step 2: Implement header/tabs/filters/footer**
 
 Use exact source labels, ordering, ARIA roles, sticky behavior and footer methodology text.
 
-- [ ] **Step 3: Add temporary active-view boundary**
+- [x] **Step 3: Add temporary active-view boundary**
 
 Render a typed `children`/view registry slot without placeholder UI. Initial active tab is `geral`; tab change scrolls smoothly to top.
 
-- [ ] **Step 4: Typecheck**
+- [x] **Step 4: Typecheck**
 
 Run: `npm run typecheck`
 
 Expected: exit 0.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/components/dashboard/Dashboard*.tsx
@@ -282,25 +282,25 @@ git commit -m "feat(dashboard): add navigation and global filters"
 
 - Both consume shared view contract from Task 5 and primitives from Task 4.
 
-- [ ] **Step 1: Extract exact computed styles and content**
+- [x] **Step 1: Extract exact computed styles and content**
 
 Capture default, hover and mobile states for both source tabs. Record five overview charts and two records charts plus table.
 
-- [ ] **Step 2: Implement Overview**
+- [x] **Step 2: Implement Overview**
 
 Port five KPIs, methodology note, monthly stacked spend/saving chart, company doughnut, monthly order volume, category top ten and currency chart.
 
-- [ ] **Step 3: Implement Records**
+- [x] **Step 3: Implement Records**
 
 Port four KPIs, explanatory note, reason chart, negotiable-vs-record monthly chart and supplier table.
 
-- [ ] **Step 4: Typecheck**
+- [x] **Step 4: Typecheck**
 
 Run: `npm run typecheck`
 
 Expected: exit 0.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/components/dashboard/views/OverviewView.tsx src/components/dashboard/views/RecordsView.tsx docs/research/components/overview-view.spec.md docs/research/components/records-view.spec.md
@@ -316,19 +316,19 @@ git commit -m "feat(dashboard): add overview and records views"
 - Create: `docs/research/components/savings-view.spec.md`
 - Create: `docs/research/components/roi-view.spec.md`
 
-- [ ] **Step 1: Extract every chart/table/state**
+- [x] **Step 1: Extract every chart/table/state**
 
 Record seven Savings cards, seven ROI cards, all cost-avoidance cards, badges, tables, top-border emphasis and source chart configs.
 
-- [ ] **Step 2: Implement Savings**
+- [x] **Step 2: Implement Savings**
 
 Port monthly saving, buyer/category saving, negotiations table, discount distribution, negotiation coverage and cost-avoidance section.
 
-- [ ] **Step 3: Implement ROI**
+- [x] **Step 3: Implement ROI**
 
 Port fixed full-period cost calculations, return/cost comparison, cost composition, unit cost, monthly coverage, cumulative return and two audit tables.
 
-- [ ] **Step 4: Typecheck and commit**
+- [x] **Step 4: Typecheck and commit**
 
 Run: `npm run typecheck`
 
@@ -344,19 +344,19 @@ git commit -m "feat(dashboard): add savings and ROI views"
 - Create: `src/components/dashboard/views/RequestsView.tsx`
 - Create: `docs/research/components/requests-view.spec.md`
 
-- [ ] **Step 1: Extract all request states**
+- [x] **Step 1: Extract all request states**
 
 Capture system and urgency filter combinations, sortable buyer table, 50-row pagination, CSV, 12 chart canvases and all responsive subgrids.
 
-- [ ] **Step 2: Implement metrics and charts**
+- [x] **Step 2: Implement metrics and charts**
 
 Port unique requests by month, method distortion, buyer/company load, monthly buyer load, request-vs-PO, urgency split, offender rankings, recurrence and person volume.
 
-- [ ] **Step 3: Implement detail table and local controls**
+- [x] **Step 3: Implement detail table and local controls**
 
 Preserve sort keys/directions, page reset rules, disabled pager state and CSV columns.
 
-- [ ] **Step 4: Typecheck and commit**
+- [x] **Step 4: Typecheck and commit**
 
 Run: `npm run typecheck`
 
@@ -372,15 +372,15 @@ git commit -m "feat(dashboard): add requests analytics view"
 - Create: `src/components/dashboard/views/BuyersView.tsx`
 - Create: `docs/research/components/buyers-view.spec.md`
 
-- [ ] **Step 1: Extract table and chart configs**
+- [x] **Step 1: Extract table and chart configs**
 
 Record four KPIs, sortable performance table and three charts at desktop/mobile.
 
-- [ ] **Step 2: Implement view**
+- [x] **Step 2: Implement view**
 
 Port performance, monthly workload, spend/saving and approval-to-PO cycle distribution.
 
-- [ ] **Step 3: Typecheck and commit**
+- [x] **Step 3: Typecheck and commit**
 
 Run: `npm run typecheck`
 
@@ -396,19 +396,19 @@ git commit -m "feat(dashboard): add buyers performance view"
 - Create: `src/components/dashboard/views/InvoicesView.tsx`
 - Create: `docs/research/components/invoices-view.spec.md`
 
-- [ ] **Step 1: Extract invoice states**
+- [x] **Step 1: Extract invoice states**
 
 Capture origin filters, six KPIs, 12 charts, outside-hours badge/table, sortable 50-row detail table, pagination and CSV.
 
-- [ ] **Step 2: Implement charts and local origin filter**
+- [x] **Step 2: Implement charts and local origin filter**
 
 Port monthly protocols, company/origin/payment/country distributions, responsible load, suppliers, weekday/hour rhythm and outside-hours analyses.
 
-- [ ] **Step 3: Implement detail tables and export**
+- [x] **Step 3: Implement detail tables and export**
 
 Preserve date/time ordering, commercial-window definition, extreme records and page controls.
 
-- [ ] **Step 4: Typecheck and commit**
+- [x] **Step 4: Typecheck and commit**
 
 Run: `npm run typecheck`
 
@@ -426,19 +426,19 @@ git commit -m "feat(dashboard): add invoice protocol view"
 - Create: `docs/research/components/categories-view.spec.md`
 - Create: `docs/research/components/suppliers-view.spec.md`
 
-- [ ] **Step 1: Extract exact charts and tables**
+- [x] **Step 1: Extract exact charts and tables**
 
 Capture category spend/month charts, detail table, supplier Pareto/ABC/saving charts and ranking table.
 
-- [ ] **Step 2: Implement Categories**
+- [x] **Step 2: Implement Categories**
 
 Port four KPIs, all-category chart, top-six monthly evolution and detail table.
 
-- [ ] **Step 3: Implement Suppliers**
+- [x] **Step 3: Implement Suppliers**
 
 Port four KPIs, ABC methodology note, top-25 Pareto, class concentration, top saving and ranking.
 
-- [ ] **Step 4: Typecheck and commit**
+- [x] **Step 4: Typecheck and commit**
 
 Run: `npm run typecheck`
 
@@ -456,19 +456,19 @@ git commit -m "feat(dashboard): add category and supplier views"
 - Create: `docs/research/components/rationalization-view.spec.md`
 - Create: `docs/research/components/database-view.spec.md`
 
-- [ ] **Step 1: Extract exact action buckets and base states**
+- [x] **Step 1: Extract exact action buckets and base states**
 
 Record eight rationalization cards, six tables, three charts, action-bucket rules, duplicate records and base table sorting/pagination/CSV.
 
-- [ ] **Step 2: Implement Rationalization**
+- [x] **Step 2: Implement Rationalization**
 
 Port ABC paradox, mutually exclusive action plan, umbrella candidates, fragmentation, value bands, duplicates and disproportionate invoice load.
 
-- [ ] **Step 3: Implement Database**
+- [x] **Step 3: Implement Database**
 
 Port four KPIs, sortable 50-row purchase table, pager and CSV export.
 
-- [ ] **Step 4: Typecheck and commit**
+- [x] **Step 4: Typecheck and commit**
 
 Run: `npm run typecheck`
 
@@ -492,33 +492,33 @@ git commit -m "feat(dashboard): add rationalization and database views"
 
 - Route `/` renders `Dashboard` and imports all views through a typed registry.
 
-- [ ] **Step 1: Wire all views**
+- [x] **Step 1: Wire all views**
 
 Map tab IDs `geral`, `reg`, `saving`, `roi`, `req`, `comp`, `prot`, `cat`, `forn`, `rac`, `base` to components. Remove scaffold placeholder completely.
 
-- [ ] **Step 2: Write browser smoke script**
+- [x] **Step 2: Write browser smoke script**
 
 Against local production server, assert every tab activates matching panel; default KPI texts include `R$ 57,3 mi`, `R$ 41,2 mi`, `R$ 4,0 mi`, `R$ 25 mil`, `474`; month/company/nature filters change scope; reset restores `Jan–Jul`; sortable header changes direction; each pager changes page; CSV buttons trigger downloads.
 
-- [ ] **Step 3: Run repository checks**
+- [x] **Step 3: Run repository checks**
 
 Run: `npm run test && npm run check`
 
 Expected: all tests, lint, typecheck and production build exit 0.
 
-- [ ] **Step 4: Run production smoke**
+- [x] **Step 4: Run production smoke**
 
 Start `npm start` from successful build, run `node scripts/smoke-dashboard.mjs`, observe all assertions pass.
 
-- [ ] **Step 5: Capture and compare first QA round**
+- [x] **Step 5: Capture and compare first QA round**
 
 Capture source and clone at 1440×900, 768×900 and 390×900 from document top after charts settle. Compare section-by-section, update specs if extraction was wrong, then batch-fix layout/content/state drift.
 
-- [ ] **Step 6: Confirm second QA round**
+- [x] **Step 6: Confirm second QA round**
 
 Recapture all three viewport sizes once. Confirm no page-level horizontal overflow, all 11 tabs and key interactions work.
 
-- [ ] **Step 7: Run mechanical detector once**
+- [x] **Step 7: Run mechanical detector once**
 
 ```bash
 /home/prof/.omp/agent/skills/impeccable/scripts/impeccable detect --json src/app/page.tsx src/app/layout.tsx src/app/globals.css src/components/dashboard
@@ -526,7 +526,7 @@ Recapture all three viewport sizes once. Confirm no page-level horizontal overfl
 
 Fix mechanical findings; do not rerun detector.
 
-- [ ] **Step 8: Update README and commit**
+- [x] **Step 8: Update README and commit**
 
 Document `npm run dev`, `npm run check`, dashboard scope and source provenance.
 

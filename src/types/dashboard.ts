@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from 'react';
+
 export const PURCHASE_INDEX = {
   order: 0,
   company: 1,
@@ -176,6 +178,20 @@ export type FilteredDashboardData = Pick<
   DashboardData,
   'rows' | 'requisicoes' | 'protocolos'
 >;
+
+export interface BaseTableSort {
+  key: string;
+  direction: 'asc' | 'desc';
+}
+
+export interface DashboardViewProps {
+  data: DashboardData;
+  filtered: FilteredDashboardData;
+  filters: DashboardFilters;
+  setFilters: Dispatch<SetStateAction<DashboardFilters>>;
+  viewSort: BaseTableSort;
+  setViewSort: Dispatch<SetStateAction<BaseTableSort>>;
+}
 
 export interface Totals {
   orders: number;
